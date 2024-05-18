@@ -7,11 +7,13 @@ function getComputerChoice() {
   let choice;
   let num = Math.floor(Math.random() * 3);
 
-  return num === 0
+  num === 0
     ? (choice = "rock")
     : num === 1
     ? (choice = "paper")
     : (choice = "scissors");
+
+    return choice.toLowerCase();
 }
 
 function getHumanChoice() {
@@ -24,8 +26,17 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    
+  let human = humanChoice;
+  let computer = computerChoice;
+
+  if (human === computer) {
+    str = "It's a draw!"
+  }else if (human === "rock") {
+    computer === "scissors" ? (str = "Humans Rule!") : (str = "computer wins!");
+  } else if (human === "scissors") {
+    computer === "paper" ? (str = "Humans Rule!") : (str = "computer wins!");
+  } else {
+    computer === "rock" ? (str = "Humans Rule!") : (str = "computer wins!");
+  }
+  console.log("Human chose " + human + " computer chose " + computer  + " " +  str);
 }
-//paper beats rock
-//rock beats scissors
-//scissors beats paper
