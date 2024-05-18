@@ -49,3 +49,11 @@ function playRound(humanChoice, computerChoice) {
   console.log(`human score: ${humanScore}`);
   console.log(`computer score: ${computerScore}`);
 }
+
+function playGame(){
+  for(i = 0; i < 5; i++){
+    playRound(getHumanChoice(), getComputerChoice());
+  }
+  humanScore = 0;
+  computerScore = 0;
+}
