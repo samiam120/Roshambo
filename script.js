@@ -29,14 +29,23 @@ function playRound(humanChoice, computerChoice) {
   let human = humanChoice;
   let computer = computerChoice;
 
+  if(human === undefined){
+    return;
+  }
   if (human === computer) {
     str = "It's a draw!"
-  }else if (human === "rock") {
-    computer === "scissors" ? (str = "Humans Rule!") : (str = "computer wins!");
-  } else if (human === "scissors") {
-    computer === "paper" ? (str = "Humans Rule!") : (str = "computer wins!");
-  } else {
-    computer === "rock" ? (str = "Humans Rule!") : (str = "computer wins!");
+  }else{
+    if((human === "rock" && computer === "paper") || 
+        human === "paper" && computer === "scissors" ||
+        human === "scissors" && computer === "rock"){
+          str = "computer wins!"
+          computerScore++;
+    }else{
+      str = "humans win!"
+      humanScore++;
+    }
   }
-  console.log("Human chose " + human + " computer chose " + computer  + " " +  str);
+  console.log(`humans chose ${human}, and computer chose ${computer}. ${str}`);
+  console.log(`human score: ${humanScore}`);
+  console.log(`computer score: ${computerScore}`);
 }
