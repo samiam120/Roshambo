@@ -13,7 +13,7 @@ function getComputerChoice() {
     ? (choice = "paper")
     : (choice = "scissors");
 
-    return choice.toLowerCase();
+  return choice.toLowerCase();
 }
 
 function getHumanChoice() {
@@ -29,31 +29,43 @@ function playRound(humanChoice, computerChoice) {
   let human = humanChoice;
   let computer = computerChoice;
 
-  if(human === undefined){
-    return;
+  if (human === undefined) {
+    return "Error, choice is undefined";
   }
   if (human === computer) {
-    str = "It's a draw!"
-  }else{
-    if((human === "rock" && computer === "paper") || 
-        human === "paper" && computer === "scissors" ||
-        human === "scissors" && computer === "rock"){
-          str = "computer wins!"
-          computerScore++;
-    }else{
-      str = "humans win!"
+    str = "It's a draw!";
+  } else {
+    if (
+      (human === "rock" && computer === "paper") ||
+      (human === "paper" && computer === "scissors") ||
+      (human === "scissors" && computer === "rock")
+    ) {
+      str = "computer wins!";
+      computerScore++;
+    } else {
+      str = "humans win!";
       humanScore++;
     }
   }
-  console.log(`humans chose ${human}, and computer chose ${computer}. ${str}`);
-  console.log(`human score: ${humanScore}`);
-  console.log(`computer score: ${computerScore}`);
+  result.textContent =`human score: ${humanScore}, computer score: ${computerScore}`;  
+
+
+  if (humanScore === 5 || computerScore === 5) {
+    humanScore = 0;
+    computerScore = 0;
+    result.textContent = 'Game Over, scores being reset!';
+  }
 }
 
-function playGame(){
-  for(i = 0; i < 5; i++){
-    playRound(getHumanChoice(), getComputerChoice());
-  }
-  humanScore = 0;
-  computerScore = 0;
-}
+let rps = document.querySelectorAll("button");
+
+rps.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    let target = event.target;
+    playRound(target.id, getComputerChoice());
+
+  });
+});
+
+const result = document.querySelector("#displayResult");
+
